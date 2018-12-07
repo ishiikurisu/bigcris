@@ -1,4 +1,5 @@
 local game_view = require "/view/game_view"
+local game_model = require "/model/game_model"
 local game_controller = { }
 game_controller.__index = game_controller
 
@@ -20,6 +21,10 @@ end
 function game_controller:update(dt)
   local controller = self
   return controller
+end
+
+function game_controller:get(query)
+  return game_model:get(query)
 end
 
 function game_controller:draw()
