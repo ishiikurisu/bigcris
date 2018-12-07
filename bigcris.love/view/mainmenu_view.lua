@@ -5,25 +5,6 @@ function mainmenu_view:new()
   local o = { }
   setmetatable(o, mainmenu_view)
   o.option = 1
-  o.avatars = {
-    { -- 3517-CP -- red
-      r = 197,
-      g = 28,
-      b = 31
-    }, { -- 3553 CP -- blue
-      r = 0,
-      g = 111,
-      b = 173
-    }, { -- 3539 CP -- green
-      r = 54,
-      g = 152,
-      b = 44
-    }, { -- 108 CP -- yellow
-      r = 249,
-      g = 218,
-      b = 0
-    }
-  }
   return o
 end
 
@@ -62,9 +43,9 @@ function mainmenu_view:draw(controller)
   x = 25
   y = 50 
   for i = 1, 4 do
-    local r = self.avatars[i].r/255.0
-    local g = self.avatars[i].g/255.0
-    local b = self.avatars[i].b/255.0
+    local r = util.avatars[i].r/255.0
+    local g = util.avatars[i].g/255.0
+    local b = util.avatars[i].b/255.0
     love.graphics.setColor(r, g, b)
     love.graphics.rectangle("fill", x, y, 100, 100)
     x = x + 150
