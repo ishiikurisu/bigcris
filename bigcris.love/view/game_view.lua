@@ -5,14 +5,17 @@ function game_view:new(bet)
   local o = { }
   setmetatable(o, game_view)
   o.bet = bet
+  o.again = false
   return o
 end
 
 function game_view:press(x, y)
   local what = nil
-  
   if (x >= 25) and (x <= 75) and (y >= 350) then
     what = 'begin'
+  end
+  if (x >= 100) and (x <= 150) and (y >= 350) and (self.again) then
+    what = 'change'
   end
   
   return what
@@ -50,6 +53,13 @@ function game_view:draw(controller)
   local b = color.b/255
   love.graphics.setColor(r, g, b)
   love.graphics.rectangle("fill", 25, 350, 50, 25)
+  
+  love.graphics.setColor(0, 0, 0)
+  if (status == 'win') or (status == 'loss')  then
+    self.again = true
+    love.graphics.setColor(1, 1, 1)
+  end
+  love.graphics.rectangle("fill", 100, 350, 50, 25)
 end
 
 return game_view

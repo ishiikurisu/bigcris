@@ -28,6 +28,8 @@ function game_controller:update(dt)
     for _, action in pairs(self.actions) do
       if action == 'begin' then
         self.model:race()
+      elseif action == 'change' then
+        controller = start:new()
       end
     end
     self.actions = { }
