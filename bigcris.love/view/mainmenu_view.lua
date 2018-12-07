@@ -71,7 +71,8 @@ function mainmenu_view:draw(controller)
   end
   
   -- start button
-  -- TODO implement me!
+  love.graphics.setColor(1, 1, 1)
+  love.graphics.rectangle("fill", 250, 50, 500, 100)
 end
 
 return mainmenu_view
