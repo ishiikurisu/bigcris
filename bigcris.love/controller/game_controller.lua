@@ -8,23 +8,36 @@ function game_controller:new()
   setmetatable(o, game_controller)
   o.actions = { }
   o.view = game_view:new()
+  o.model = game_model:new()
   return o
 end
 
 function game_controller:push(x, y)
   local what = self.view:press(x, y)
-  if what ~= nil then
+  if (what ~= nil) and (not self.model.running) then
     table.insert(self.actions, what)
   end
 end
 
 function game_controller:update(dt)
   local controller = self
+  
+  self.model:update()
+  
+  if not self.model.running then
+    for _, action in pairs(self.actions) do
+      if action == 'start' then
+        -- TODO start race
+      end
+    end
+    self.actions = { }
+  end
+  
   return controller
 end
 
 function game_controller:get(query)
-  return game_model:get(query)
+  return self.model:get(query)
 end
 
 function game_controller:draw()

@@ -15,6 +15,8 @@ function game_model:get(query)
   
   if query.what == 'position' then
     payload = 0
+  elseif query.what == 'status' then
+    payload = { r = 255, g = 255, b = 255 }
   end
   
   return payload
