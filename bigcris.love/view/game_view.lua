@@ -12,7 +12,7 @@ function game_view:press(x, y)
   local what = nil
   
   if (x >= 25) and (x <= 75) and (y >= 350) then
-    what = 'start'
+    what = 'begin'
   end
   
   return what
@@ -37,9 +37,17 @@ function game_view:draw(controller)
   
   -- drawing buttons
   local status = controller:get({ what = 'status' })
-  local r = status.r/255
-  local g = status.g/255
-  local b = status.b/255
+  local color = { r = 255, g = 255, b = 0 }
+  if status == 'begin' then
+    color = { r = 255, g = 255, b = 255 }
+  elseif status == 'win' then
+    color = { r = 0, g = 255, b = 0 }
+  elseif status == 'loss' then
+    color = { r = 255, g = 0, b = 0 }
+  end
+  local r = color.r/255
+  local g = color.g/255
+  local b = color.b/255
   love.graphics.setColor(r, g, b)
   love.graphics.rectangle("fill", 25, 350, 50, 25)
 end
