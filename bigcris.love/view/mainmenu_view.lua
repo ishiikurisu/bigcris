@@ -55,7 +55,7 @@ function mainmenu_view:draw(controller)
   -- current option
   local x = 15 + 150*(self.option-1)
   local y = 40
-  love.graphics.setColor(1, 1, 1) -- white
+  love.graphics.setColor(1, 1, 1)
   love.graphics.rectangle("fill", x, y, 120, 120)
   
   -- all options

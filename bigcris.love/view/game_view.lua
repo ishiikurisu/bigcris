@@ -13,11 +13,9 @@ function game_view:press(x, y)
   local what = nil
   if (x >= 25) and (x <= 75) and (y >= 350) then
     what = 'begin'
-  end
-  if (x >= 100) and (x <= 150) and (y >= 350) and (self.again) then
+  elseif (x >= 100) and (x <= 150) and (y >= 350) and (self.again) then
     what = 'change'
   end
-  
   return what
 end
 
@@ -39,14 +37,15 @@ function game_view:draw(controller)
   end
   
   -- drawing buttons
+  -- start button
   local status = controller:get({ what = 'status' })
-  local color = { r = 255, g = 255, b = 0 }
+  local color = util.colors.yellow
   if status == 'begin' then
-    color = { r = 255, g = 255, b = 255 }
+    color = util.colors.white
   elseif status == 'win' then
-    color = { r = 0, g = 255, b = 0 }
+    color = util.colors.green
   elseif status == 'loss' then
-    color = { r = 255, g = 0, b = 0 }
+    color = util.colors.red
   end
   local r = color.r/255
   local g = color.g/255
@@ -54,11 +53,16 @@ function game_view:draw(controller)
   love.graphics.setColor(r, g, b)
   love.graphics.rectangle("fill", 25, 350, 50, 25)
   
-  love.graphics.setColor(0, 0, 0)
+  -- new pick button
+  color = util.colors.black
   if (status == 'win') or (status == 'loss')  then
+    color = util.colors.white
     self.again = true
-    love.graphics.setColor(1, 1, 1)
   end
+  r = color.r/255
+  g = color.g/255
+  b = color.b/255
+  love.graphics.setColor(r, g, b)
   love.graphics.rectangle("fill", 100, 350, 50, 25)
 end
 
