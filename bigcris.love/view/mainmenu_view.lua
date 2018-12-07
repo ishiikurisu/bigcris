@@ -30,7 +30,7 @@ end
 function mainmenu_view:press(x, y)
   local what = nil
   
-  if (y >= 25) and y < 175 then
+  if (y >= 25) and (y < 175) then
     if (x >= 25) and (x <= 125) then
       what = 'option 1'
     elseif (x >= 175) and (x <= 275) then
@@ -40,8 +40,8 @@ function mainmenu_view:press(x, y)
     elseif (x >= 475) and (x <= 575) then
       what = 'option 4'
     end
-  else
-    -- TODO implement start button
+  elseif (y >= 250) and (y <= 350) and (x >= 50) and (x <= 550) then
+    what = 'start'
   end
     
   return what
@@ -72,7 +72,7 @@ function mainmenu_view:draw(controller)
   
   -- start button
   love.graphics.setColor(1, 1, 1)
-  love.graphics.rectangle("fill", 250, 50, 500, 100)
+  love.graphics.rectangle("fill", 50, 250, 500, 100)
 end
 
 return mainmenu_view

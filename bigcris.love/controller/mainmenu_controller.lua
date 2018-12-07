@@ -1,4 +1,5 @@
 local mainmenu_view = require "/view/mainmenu_view"
+local game_controller = require "/controller/game_controller"
 local mainmenu_controller = { }
 mainmenu_controller.__index = mainmenu_controller
 
@@ -16,6 +17,8 @@ function mainmenu_controller:push(x, y)
 end
 
 function mainmenu_controller:update(dt)
+  local controller = self
+  
   for _, action in pairs(self.actions) do
     if action == 'option 1' then
       self.view:set_option(1)
@@ -25,9 +28,12 @@ function mainmenu_controller:update(dt)
       self.view:set_option(3)
     elseif action == 'option 4' then
       self.view:set_option(4)
+    elseif action == 'start' then
+      controller = game_controller:new(self.view.option)
     end
   end
-  return self
+  
+  return controller
 end
 
 function mainmenu_controller:draw()
