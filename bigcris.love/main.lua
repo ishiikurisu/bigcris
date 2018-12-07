@@ -1,4 +1,4 @@
-start = require "controller/mainmenu_controller"
+start = require "/controller/mainmenu_controller"
 util = require "util"
 
 function love.load()
